@@ -7,8 +7,8 @@
     "license": "ISC",
     "scripts": {
         "build": "npm i && tsc",
-        "dev": "ts-node-dev app.ts",
-        "start": "node build/app.js"
+        "start": "node build/app.js",
+        "dev": "ts-node-dev app.ts"
     },
     "dependencies": {
         "bcrypt": "^5.1.0",

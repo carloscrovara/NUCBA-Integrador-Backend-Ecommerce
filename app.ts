@@ -2,6 +2,7 @@ import express , {Request, Response} from 'express'
 import { getConfig } from './src/config/config';
 import { createPrismaClient } from './src/config/prismaClient';
 import { authRouter } from './src/auth/authRouter';
+import { productsRouter } from './src/products/productsRouter';
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -10,7 +11,8 @@ app.use(express.json());
 
 //Rutas
 app.get("/", (req: Request, res: Response) => res.type('html').send(html));
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
+app.use('/products', productsRouter);
 
 const server = app.listen(port, () =>{
     createPrismaClient();

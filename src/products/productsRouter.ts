@@ -1,9 +1,15 @@
 import { Router } from "express";
-import { authMiddleware } from "../middlewares/authMiddlewares";
+import { authAdminMiddleware, authMiddleware } from "../middlewares/authMiddlewares";
 import { createProductController } from "./productsControllers";
 
 export const productsRouter = Router();
 
-productsRouter.use(authMiddleware);
+//Rutas que no requieren autenticacion ni autorizacion
+//productsRouter.get('/getall',);
+//productsRouter.get('/:id',);
+
+//Rutas que requieren autenticacion y autorizacion
+productsRouter.use(authMiddleware, authAdminMiddleware);
 productsRouter.post('/create',createProductController);
-//productsRouter.get('',);
+//productsRouter.put('/update/:id',);
+//productsRouter.delete('/delete/:id',);

@@ -15,6 +15,7 @@ export const authMiddleware =  async (req: Request, res: Response, next: NextFun
         if (data) {
             res.locals.email  = (data as any).email;
             res.locals.userId = (data as any).userId;
+            res.locals.role = (data as any).role;
         next()
         return
         }
@@ -28,5 +29,15 @@ export const authMiddleware =  async (req: Request, res: Response, next: NextFun
     }
 
     res.status(401).json({ message: "NOT AUTHORIZED: TOKEN NOT VALID" });
+    return;
+}
+
+//AUTORIZACION
+export const authAdminMiddleware =  async (req: Request, res: Response, next: NextFunction) => {
+    if(res.locals.role && res.locals.role === 1){
+        next()
+        return;
+    }
+    res.status(403).json({ message: "NOT AUTHORIZED: NEED ADMIN ROLE" });
     return;
 }

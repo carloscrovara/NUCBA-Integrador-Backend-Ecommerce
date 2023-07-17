@@ -12,39 +12,52 @@ datasource db {
 }
 
 model Products {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(255) @unique
-  description String @db.VarChar(255)
-  image   String   @db.VarChar(255)
-  price     Float    @db.Float
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
-  deletedAt DateTime? @db.Timestamp(0)
-  category Categories @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  id          Int        @id @default(autoincrement())
+  name        String     @db.VarChar(255) @unique
+  description String     @db.VarChar(255)
+  image       String     @db.VarChar(255)
+  price       Float      @db.Float
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now()) @db.Timestamp(0) @updatedAt
+  deletedAt   DateTime?  @db.Timestamp(0)
+  category    Categories @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  orders      Orders[]
 }
 
 model Categories {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(255) @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255) @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @db.Timestamp(0) @updatedAt
   deletedAt DateTime? @db.Timestamp(0)
-  products Products[]
+  products  Products[]
+}
+
+model Orders {
+  id        String     @id @default(dbgenerated("(uuid())")) @db.VarChar(36)
+  status    String     @default("created") @db.VarChar(255)
+  user      Users      @relation(fields: [userId], references: [id])
+  userId    String     @db.VarChar(36)
+  createdAt DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt DateTime   @default(now()) @db.Timestamp(0) @updatedAt
+  deletedAt DateTime?  @db.Timestamp(0)
+  products  Products[]
 }
 
 model Users {
-  id     String @id @default(dbgenerated("(uuid())")) @db.VarChar(36)
-  email String @db.VarChar(255) @unique
-  password String @db.VarChar(255)
-  createdAt DateTime  @default(now()) @db.Timestamp(0)
-  role Roles @relation(fields: [roleId], references: [id])
-  roleId Int @default(2)
+  id         String    @id @default(dbgenerated("(uuid())")) @db.VarChar(36)
+  email      String    @db.VarChar(255) @unique
+  password   String    @db.VarChar(255)
+  createdAt  DateTime  @default(now()) @db.Timestamp(0)
+  role       Roles     @relation(fields: [roleId], references: [id])
+  roleId     Int       @default(2)
+  orders     Orders[]
 }
 
 model Roles {
-  id        Int      @id @default(autoincrement())
-  name     String   @db.VarChar(255) @unique
-  createdAt DateTime @default(now())
-  users Users[]
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(255) @unique
+  createdAt DateTime  @default(now())
+  users     Users[]
 }

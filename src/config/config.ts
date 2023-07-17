@@ -12,7 +12,6 @@ const getRefreshToken = () => {
 }
 
 let config : config | null = null
-
 export const getConfig = ():config => {
     if(config){
         return config
@@ -20,8 +19,8 @@ export const getConfig = ():config => {
     config = {
         accesTokenSecret: getAcessToken(),
         refreshTokenSecret: getRefreshToken(),
-        }
-        return config
+    }
+    return config
     }
 
 export type config = {

@@ -17,7 +17,7 @@ model Products {
   description String     @db.VarChar(255)
   image       String     @db.VarChar(255)
   price       Float      @db.Float
-  createdAt   DateTime   @default(now())
+  createdAt   DateTime   @default(now()) @db.Timestamp(0)
   updatedAt   DateTime   @default(now()) @db.Timestamp(0) @updatedAt
   deletedAt   DateTime?  @db.Timestamp(0)
   category    Categories @relation(fields: [categoryId], references: [id])
@@ -48,7 +48,7 @@ model OrdersAndProducts {
 model Categories {
   id        Int       @id @default(autoincrement())
   name      String    @db.VarChar(255) @unique
-  createdAt DateTime  @default(now())
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
   updatedAt DateTime  @default(now()) @db.Timestamp(0) @updatedAt
   deletedAt DateTime? @db.Timestamp(0)
   products  Products[]
@@ -67,6 +67,6 @@ model Users {
 model Roles {
   id        Int       @id @default(autoincrement())
   name      String    @db.VarChar(255) @unique
-  createdAt DateTime  @default(now())
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
   users     Users[]
 }

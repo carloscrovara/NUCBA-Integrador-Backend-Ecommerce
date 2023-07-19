@@ -6,7 +6,7 @@ export const createProductController = async (req: Request, res: Response) => {
     try {
         const result = await createProduct(name, description, image, price, categoryId)
         res.json(result)
-    return
+        return
     } catch (err) {
         res.status(500).send(err)
         return

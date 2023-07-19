@@ -3,6 +3,7 @@ import { getConfig } from './src/config/config';
 import { createPrismaClient } from './src/config/prismaClient';
 import { authRouter } from './src/auth/authRouter';
 import { productsRouter } from './src/products/productsRouter';
+import { categoriesRouter } from './src/categories/categoriesRouter';
 import { html } from './src/inicioMsje';
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(express.json());
 app.get("/", (req: Request, res: Response) => res.type('html').send(html));
 app.use('/auth', authRouter);
 app.use('/products', productsRouter);
-//app.use('/categories', categoriesRouter);
+app.use('/categories', categoriesRouter);
 //app.use('/orders', ordersRouter);
 
 const server = app.listen(port, () =>{

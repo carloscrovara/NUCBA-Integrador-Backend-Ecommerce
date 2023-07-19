@@ -7,7 +7,7 @@ import { body } from "express-validator";
 export const productsRouter = Router();
 
 //Rutas que no requieren autenticacion ni autorizacion
-//productsRouter.get('/getall',);
+//productsRouter.get('/list',);
 //productsRouter.get('/:id',);
 
 //Rutas que requieren autenticacion y autorizacion

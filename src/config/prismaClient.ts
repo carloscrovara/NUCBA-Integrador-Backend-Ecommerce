@@ -7,16 +7,13 @@ let prismaClient: PrismaClient<
 
 export function createPrismaClient() {
     prismaClient = new PrismaClient();
-    // prismaClient.$use(async (params:any, next:any) => {
-    //   // Check incoming query type
-    //   if (params.action == "delete") {
-    //     // Delete queries
-    //     // Change action to an update
-    //     params.action = "update";
-    //     params.args["data"] = { deleted_at: new Date() };
-    //   }
-    //   return next(params);
-    // });
+    prismaClient.$use(async (params:any, next:any) => {
+        if (params.action == "delete") {
+            params.action = "update";
+            params.args["data"] = { deletedAt: new Date() };
+        }
+        return next(params);
+    });
     return prismaClient;
 }
 

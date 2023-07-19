@@ -22,5 +22,5 @@ productsRouter.post(
     validator,
     createProductController
 );
-//productsRouter.put('/update/:id',);
-//productsRouter.delete('/delete/:id',);
+//productsRouter.put('/update/:id', nombreControlador);
+//productsRouter.delete('/delete/:id', nombreControlador);

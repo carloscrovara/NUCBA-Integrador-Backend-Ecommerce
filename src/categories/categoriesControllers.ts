@@ -27,8 +27,6 @@ export const getCategoryByIdController = async (req: Request, res: Response) => 
     }
 };
 
-
-
 export const createCategoryController = async (req: Request, res: Response) => {
     const { name } = req.body;
     try {

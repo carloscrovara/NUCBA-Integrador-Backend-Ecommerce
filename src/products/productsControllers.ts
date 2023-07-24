@@ -31,11 +31,11 @@ export const createProductController = async (req: Request, res: Response) => {
     const { name, description, image, price, categoryId } = req.body;
     try {
         const result = await createProduct(name, description, image, price, categoryId)
-        res.json(result)
-        return
+        res.json(result);
+        return;
     } catch (err) {
-        res.status(500).send(err)
-        return
+        res.status(500).send(err);
+        return;
     }
 }
 

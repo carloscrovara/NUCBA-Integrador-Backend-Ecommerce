@@ -796,6 +796,184 @@
 					]
 				},
 				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Admin",
+							"item": [
+								{
+									"name": "localhost - get orders - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3001/orders/admin/list",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"orders",
+												"admin",
+												"list"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "localhost - get order by ID - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3001/orders/admin/:id",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"orders",
+												"admin",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "local host - create order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productsIds\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/orders/create",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"orders",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost - get orders - Costumer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/orders/list",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"orders",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost - get order by ID - Costumer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/orders/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "localhost - login",
 					"request": {
 						"method": "POST",

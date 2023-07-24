@@ -5,7 +5,10 @@ export const getOrdersAdmin = async () => {
         const orders = await prisma().orders.findMany({
             where: { 
                 deletedAt: null, 
-            },   
+            },
+            include: { 
+                products: true 
+            },    
         })
         return orders;
     } catch (err) {
@@ -36,6 +39,9 @@ export const getOrders = async (userId:string) => {
                     id: userId
                 }, 
                 deletedAt: null, 
+            },
+            include: { 
+                products: true 
             },   
         })
         return orders;
@@ -51,7 +57,9 @@ export const getOrderById = async (orderId: string, userId:string) => {
             where: {
                 id: userId,
             },
-            include: { orders: true },
+            include: { 
+                orders: true 
+            },
         });
         if (!usuarios) {
             return null;
@@ -63,36 +71,54 @@ export const getOrderById = async (orderId: string, userId:string) => {
     }
 }
 
-export const createOrder = async (userId:string, productsIds: number) => {
-    try {        
-        // Fetch products based on the provided IDs
-        /*const products = await prisma().products.findMany({
-            where: {
-                id: {
-                    in: productsIds,
-                }
-            }
-        })
-        */
-
+export const createOrder = async (userId:string, productsIds:number[]) =>  {
+    try {            
         const orderCreated = await prisma().orders.create({
             data: {
                 userId: userId,
-                //Connect with one product id
                 products: {
-                    create: [
-                        {
-                            product: {
-                                connect: {
-                                    id: productsIds,
-                                },
+                    create: productsIds.map((productId) => ({
+                        product: {
+                            connect: {
+                                id: productId,
                             },
                         },
-                    ],
+                    })),
                 },
             }
         })
         return orderCreated;
+    } catch (err){
+        console.log(err)
+        throw err
+    }
+}
+
+export const updateOrder = async (orderId:string, userId:string, productsIds:number[]) =>  {
+    try {            
+        //condicional que comprueba si el id de order a modificar pertenece al usuario logueado
+        const order = await getOrderById(orderId, userId);
+        if (!order) {
+            throw new Error("Not found the order or ID order belongs to another user.");
+        } 
+        const orderUpdated = await prisma().orders.update({
+            where: {
+                id: orderId,
+            },
+            data: {
+                userId: userId,
+                products: {
+                    create: productsIds.map((productId) => ({
+                        product: {
+                            connect: {
+                                id: productId,
+                            },
+                        },
+                    })),
+                },
+            }
+        })
+        return orderUpdated;
     } catch (err){
         console.log(err)
         throw err

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authAdminMiddleware, authMiddleware } from "../middlewares/authMiddlewares";
-import { createOrderController, getOrdersAdminController, getOrderByIdAdminController, getOrdersController, getOrderByIdController, deleteOrderController } from "./ordersControllers";
+import { createOrderController, getOrdersAdminController, getOrderByIdAdminController, getOrdersController, getOrderByIdController, updateOrderController, deleteOrderController } from "./ordersControllers";
 import { validator } from "../validators/validators";
 import { body } from "express-validator";
 
@@ -12,18 +12,16 @@ ordersRouter.get('/list', getOrdersController);
 ordersRouter.get('/:id', getOrderByIdController);
 ordersRouter.post(
     '/create',
-    //body("productsIds").notEmpty(),
-    //validator,
+    body("productsIds").isArray({ min: 1}),
+    validator,
     createOrderController
 );
-/*
 ordersRouter.put(
     '/update/:id',
-    //body("productsIds").notEmpty(),
-    //validator,
-    createOrderController
+    body("productsIds").isArray({ min: 1}),
+    validator,
+    updateOrderController
 );
-*/
 ordersRouter.delete('/delete/:id', deleteOrderController);
 
 //Rutas que requieren autenticacion y autorizacion de administrador

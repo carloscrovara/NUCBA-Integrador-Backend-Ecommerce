@@ -98,3 +98,18 @@ export const createOrder = async (userId:string, productsIds: number) => {
         throw err
     }
 }
+
+export const deleteOrder = async (orderId:string, userId: string) => {
+    try {
+        //condicional que comprueba si el id de order a borrar pertenece al usuario logueado
+        const order = await getOrderById(orderId, userId);
+        if (!order) {
+            throw new Error("Not found the order or ID order belongs to another user.");
+        }     
+        await prisma().orders.delete({ where: { id: orderId } });
+        return;
+    } catch (err){
+        console.log(err);
+        throw err;
+    }
+}

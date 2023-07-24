@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createOrder, getOrdersAdmin, getOrderByIdAdmin, getOrders, getOrderById } from "./ordersLogic";
+import { createOrder, getOrdersAdmin, getOrderByIdAdmin, getOrders, getOrderById, deleteOrder } from "./ordersLogic";
 
 export const getOrdersAdminController = async (req: Request, res: Response) => {
     try {
@@ -65,3 +65,14 @@ export const createOrderController = async (req: Request, res: Response) => {
         return;
     }
 }
+
+export const deleteOrderController = async (req: Request, res: Response) => {
+    try {
+        const orderId = req.params.id;
+        const userId = res.locals.userId;
+        await deleteOrder(orderId, userId);
+        res.status(204).send();
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};

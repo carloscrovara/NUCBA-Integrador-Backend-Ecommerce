@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authAdminMiddleware, authMiddleware } from "../middlewares/authMiddlewares";
-import { createOrderController, getOrdersAdminController, getOrderByIdAdminController, getOrdersController, getOrderByIdController, updateOrderController, deleteOrderController } from "./ordersControllers";
+import { getOrdersAdminController, getOrderByIdAdminController, getOrdersController, getOrderByIdController, getOrdersDateRangeController, getOrdersDateRangeControllerAdmin, createOrderController, updateOrderController, deleteOrderController } from "./ordersControllers";
 import { validator } from "../validators/validators";
 import { body } from "express-validator";
 
@@ -10,6 +10,7 @@ export const ordersRouter = Router();
 ordersRouter.use(authMiddleware);
 ordersRouter.get('/list', getOrdersController);
 ordersRouter.get('/:id', getOrderByIdController);
+ordersRouter.get('/daterange/:initialDate/:finalDate', getOrdersDateRangeController);
 ordersRouter.post(
     '/create',
     body("productsIds").isArray({ min: 1}),
@@ -28,3 +29,4 @@ ordersRouter.delete('/delete/:id', deleteOrderController);
 ordersRouter.use(authMiddleware, authAdminMiddleware);
 ordersRouter.get('/admin/list', getOrdersAdminController);
 ordersRouter.get('/admin/:id', getOrderByIdAdminController);
+ordersRouter.get('/admin/daterange/:initialDate/:finalDate', getOrdersDateRangeControllerAdmin);

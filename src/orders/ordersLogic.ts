@@ -71,6 +71,49 @@ export const getOrderById = async (orderId: string, userId:string) => {
     }
 }
 
+type filterInput = {dateRange:{start: Date, end: Date}};
+
+export const getOrdersDateRange = async (userId:string, filterInput: filterInput) => {
+    try {
+        const filter: any = {
+            userId: userId,
+            deletedAt: null,
+        }
+        if(filterInput.dateRange){
+            filter.createdAt = {
+                gte: filterInput.dateRange.start,
+                lte: filterInput.dateRange.end,
+            }
+        }
+        const result = await prisma().orders.findMany({
+            where: filter,
+        });
+        return result;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export const getOrdersDateRangeAdmin = async (filterInput: filterInput) => {
+    try {
+        const filter: any = {
+            deletedAt: null,
+        }
+        if(filterInput.dateRange){
+            filter.createdAt = {
+                gte: filterInput.dateRange.start,
+                lte: filterInput.dateRange.end,
+            }
+        }
+        const result = await prisma().orders.findMany({
+            where: filter,
+        });
+        return result;
+    } catch (err) {
+        throw err;
+    }
+}
+
 export const createOrder = async (userId:string, productsIds:number[]) =>  {
     try {            
         const orderCreated = await prisma().orders.create({

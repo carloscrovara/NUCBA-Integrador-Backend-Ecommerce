@@ -101,6 +101,7 @@ export const getOrdersDateRangeControllerAdmin = async (req: Request, res: Respo
 export const createOrderController = async (req: Request, res: Response) => {
     const userId = res.locals.userId;
     const { productsIds } = req.body;
+    //const { productsIds, quantity } = req.body;
     try {
         const result = await createOrder(userId, productsIds)
         res.json(result);

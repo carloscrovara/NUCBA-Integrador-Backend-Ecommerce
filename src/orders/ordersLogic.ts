@@ -128,6 +128,18 @@ export const createOrder = async (userId:string, productsIds:number[]) =>  {
                         },
                     })),
                 },
+                /*
+                products: {
+                    create: productsIds.map((productId, index) => ({
+                        product: {
+                            connect: {
+                                id: productId,
+                            },
+                        },
+                        quantity: quantity[index],
+                    })),
+                },
+                */
             }
         })
         return orderCreated;

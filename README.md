@@ -23,5 +23,25 @@ en Postman importar la colección de requests que se encuentra en la carpeta pos
 ```
 
 ## Funcionalidades principales
+-> Registro y login de usuarios. 
 
--> 
+### Rol Administrador
+-> Crear, editar y eliminar productos.
+
+-> Crear, editar y eliminar categorías.
+
+-> Consultar las órdenes de todos los usuarios o una orden en particular.
+
+-> Consultar las órdenes de los usuarios en un período específico.
+
+### Rol Cliente
+-> Crear, editar y eliminar órdenes. 
+
+-> Consultar las órdenes realizadas o una orden en particular.
+
+-> Consultar las órdenes efectuadas en un período específico.
+
+### Todos los roles (Administrador y Cliente)
+-> Consultar todos los productos o un producto en particular.
+
+-> Consultar todas las categorías de los productos o una categoría específica. 

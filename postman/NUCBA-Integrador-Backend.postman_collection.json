@@ -380,6 +380,366 @@
 					]
 				},
 				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Admin",
+							"item": [
+								{
+									"name": "Render Cloud - get orders - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/admin/list",
+											"protocol": "https",
+											"host": [
+												"nucba-integrador-backend-ecommerce",
+												"onrender",
+												"com"
+											],
+											"path": [
+												"orders",
+												"admin",
+												"list"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Render Cloud - get order by ID - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/admin/:id",
+											"protocol": "https",
+											"host": [
+												"nucba-integrador-backend-ecommerce",
+												"onrender",
+												"com"
+											],
+											"path": [
+												"orders",
+												"admin",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Render Cloud - get date range orders - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/admin/daterange/:initialDate/:finalDate",
+											"protocol": "https",
+											"host": [
+												"nucba-integrador-backend-ecommerce",
+												"onrender",
+												"com"
+											],
+											"path": [
+												"orders",
+												"admin",
+												"daterange",
+												":initialDate",
+												":finalDate"
+											],
+											"variable": [
+												{
+													"key": "initialDate",
+													"value": ""
+												},
+												{
+													"key": "finalDate",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Render Cloud - create order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productsIds\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/create",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Render Cloud - get orders - Costumer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/list",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Render Cloud - get order by ID - Costumer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/:id",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Render Cloud - get date range orders - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/daterange/:initialDate/:finalDate",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										"daterange",
+										":initialDate",
+										":finalDate"
+									],
+									"variable": [
+										{
+											"key": "initialDate",
+											"value": ""
+										},
+										{
+											"key": "finalDate",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Render Cloud - update order - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productsIds\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/update/:id",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										"update",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Render Cloud - delete order - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/delete/:id",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										"delete",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Render Cloud - register",
 					"request": {
 						"method": "POST",
@@ -866,6 +1226,48 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "localhost - get date range orders - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3001/orders/admin/daterange/:initialDate/:finalDate",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"orders",
+												"admin",
+												"daterange",
+												":initialDate",
+												":finalDate"
+											],
+											"variable": [
+												{
+													"key": "initialDate",
+													"value": ""
+												},
+												{
+													"key": "finalDate",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -972,6 +1374,47 @@
 							"response": []
 						},
 						{
+							"name": "localhost - get date range orders - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/orders/daterange/:initialDate/:finalDate",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"orders",
+										"daterange",
+										":initialDate",
+										":finalDate"
+									],
+									"variable": [
+										{
+											"key": "initialDate",
+											"value": ""
+										},
+										{
+											"key": "finalDate",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "local host - update order - Customer",
 							"request": {
 								"auth": {
@@ -1024,7 +1467,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhcmxvc0BnbWFpbC5jb20iLCJ1c2VySWQiOiIzNDE3YTJlNy0yNWMzLTExZWUtYWQxNy0wY2M0N2EzNDdiMjQiLCJyb2xlIjoyLCJpYXQiOjE2OTAxNjY3MzQsImV4cCI6MTY5MDE3MDMzNH0.hGtaenG6Hin4lVycLzHsk02Sxlz_N1Hc_vJaJ-hOxbk",
+											"value": "",
 											"type": "string"
 										}
 									]

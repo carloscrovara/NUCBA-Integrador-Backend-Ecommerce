@@ -19,6 +19,7 @@ ordersRouter.post(
 );
 ordersRouter.put(
     '/update/:id',
+    body("status").isString().notEmpty().optional(),
     body("productsIds").isArray({ min: 1}),
     validator,
     updateOrderController

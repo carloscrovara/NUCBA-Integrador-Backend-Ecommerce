@@ -116,8 +116,8 @@ export const updateOrderController = async (req: Request, res: Response) => {
     try {
         const orderId = req.params.id;
         const userId = res.locals.userId;
-        const { productsIds } = req.body;
-        const result = await updateOrder(orderId, userId, productsIds);
+        const { status, productsIds } = req.body;
+        const result = await updateOrder(orderId, userId, status, productsIds);
         res.json(result);
     } catch (error: any) {
         res.status(500).json({ message: error.message });

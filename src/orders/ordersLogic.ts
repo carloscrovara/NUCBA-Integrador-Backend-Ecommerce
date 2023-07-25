@@ -149,7 +149,7 @@ export const createOrder = async (userId:string, productsIds:number[]) =>  {
     }
 }
 
-export const updateOrder = async (orderId:string, userId:string, productsIds:number[]) =>  {
+export const updateOrder = async (orderId:string, userId:string, status: string, productsIds:number[]) =>  {
     try {            
         //condicional que comprueba si el id de order a modificar pertenece al usuario logueado
         const order = await getOrderById(orderId, userId);
@@ -161,6 +161,7 @@ export const updateOrder = async (orderId:string, userId:string, productsIds:num
                 id: orderId,
             },
             data: {
+                status: status,
                 userId: userId,
                 products: {
                     create: productsIds.map((productId) => ({

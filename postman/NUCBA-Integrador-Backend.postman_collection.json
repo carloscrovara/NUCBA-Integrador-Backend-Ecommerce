@@ -1431,7 +1431,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productsIds\": []\n}",
+									"raw": "{\n    \"status\": \"\",\n    \"productsIds\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"

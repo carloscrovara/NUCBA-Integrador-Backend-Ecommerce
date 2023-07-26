@@ -518,7 +518,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productsIds\": []\n}",
+									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -669,7 +669,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productsIds\": []\n}",
+									"raw": "{\n    \"status\": \"\",\n    \"productsIds\": [],\n    \"quantity\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1288,7 +1288,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productsIds\": []\n}",
+									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1431,7 +1431,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"status\": \"\",\n    \"productsIds\": []\n}",
+									"raw": "{\n    \"status\": \"\",\n    \"productsIds\": [],\n    \"quantity\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"

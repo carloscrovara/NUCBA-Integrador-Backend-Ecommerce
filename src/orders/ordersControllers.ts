@@ -100,10 +100,9 @@ export const getOrdersDateRangeControllerAdmin = async (req: Request, res: Respo
 
 export const createOrderController = async (req: Request, res: Response) => {
     const userId = res.locals.userId;
-    const { productsIds } = req.body;
-    //const { productsIds, quantity } = req.body;
+    const { productsIds, quantity } = req.body;
     try {
-        const result = await createOrder(userId, productsIds)
+        const result = await createOrder(userId, productsIds, quantity)
         res.json(result);
         return;
     } catch (err) {
@@ -116,8 +115,8 @@ export const updateOrderController = async (req: Request, res: Response) => {
     try {
         const orderId = req.params.id;
         const userId = res.locals.userId;
-        const { status, productsIds } = req.body;
-        const result = await updateOrder(orderId, userId, status, productsIds);
+        const { status, productsIds, quantity } = req.body;
+        const result = await updateOrder(orderId, userId, status, productsIds, quantity);
         res.json(result);
     } catch (error: any) {
         res.status(500).json({ message: error.message });

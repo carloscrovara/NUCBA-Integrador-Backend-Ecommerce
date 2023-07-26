@@ -41,6 +41,7 @@ model OrdersAndProducts {
   productId   Int
   orders      Orders @relation(fields: [orderId], references: [id])
   orderId     String
+  quantity    Int 
   assignedAt  DateTime @default(now()) @db.Timestamp(0)
   @@id([productId, orderId])
 }

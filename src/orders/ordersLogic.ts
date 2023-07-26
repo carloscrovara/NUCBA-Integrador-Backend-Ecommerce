@@ -114,34 +114,22 @@ export const getOrdersDateRangeAdmin = async (filterInput: filterInput) => {
     }
 }
 
-export const createOrder = async (userId:string, productsIds:number[]) =>  {
+export const createOrder = async (userId:string, productsIds:number[], quantity:number[]) =>  {
     try {            
         const orderCreated = await prisma().orders.create({
             data: {
                 userId: userId,
-                products: {
-                    create: productsIds.map((productId) => ({
-                        product: {
-                            connect: {
-                                id: productId,
-                            },
-                        },
-                    })),
-                },
-                /*
-                products: {
-                    create: productsIds.map((productId, index) => ({
-                        product: {
-                            connect: {
-                                id: productId,
-                            },
-                        },
-                        quantity: quantity[index],
-                    })),
-                },
-                */
             }
         })
+
+        const productsOnOrdersCreated = await prisma().ordersAndProducts.createMany({
+            data: productsIds.map((productId, index) => ({
+                orderId: orderCreated.id,
+                productId: productId,
+                quantity: quantity[index],
+            })),
+        })
+
         return orderCreated;
     } catch (err){
         console.log(err)
@@ -149,7 +137,7 @@ export const createOrder = async (userId:string, productsIds:number[]) =>  {
     }
 }
 
-export const updateOrder = async (orderId:string, userId:string, status: string, productsIds:number[]) =>  {
+export const updateOrder = async (orderId:string, userId:string, status: string, productsIds:number[], quantity:number[]) =>  {
     try {            
         //condicional que comprueba si el id de order a modificar pertenece al usuario logueado
         const order = await getOrderById(orderId, userId);
@@ -163,17 +151,17 @@ export const updateOrder = async (orderId:string, userId:string, status: string,
             data: {
                 status: status,
                 userId: userId,
-                products: {
-                    create: productsIds.map((productId) => ({
-                        product: {
-                            connect: {
-                                id: productId,
-                            },
-                        },
-                    })),
-                },
             }
         })
+
+        const productsOnOrdersCreated = await prisma().ordersAndProducts.createMany({
+            data: productsIds.map((productId, index) => ({
+                orderId: orderUpdated.id,
+                productId: productId,
+                quantity: quantity[index],
+            })),
+        })
+        
         return orderUpdated;
     } catch (err){
         console.log(err)

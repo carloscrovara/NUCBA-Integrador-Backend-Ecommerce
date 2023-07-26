@@ -14,6 +14,7 @@ ordersRouter.get('/daterange/:initialDate/:finalDate', getOrdersDateRangeControl
 ordersRouter.post(
     '/create',
     body("productsIds").isArray({ min: 1}),
+    body("quantity").isArray({ min: 1}),
     validator,
     createOrderController
 );
@@ -21,9 +22,10 @@ ordersRouter.put(
     '/update/:id',
     body("status").isString().notEmpty().optional(),
     body("productsIds").isArray({ min: 1}),
+    body("quantity").isArray({ min: 1}),
     validator,
     updateOrderController
-);
+)
 ordersRouter.delete('/delete/:id', deleteOrderController);
 
 //Rutas que requieren autenticacion y autorizacion de administrador

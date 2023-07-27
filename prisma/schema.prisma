@@ -43,7 +43,6 @@ model OrdersAndProducts {
   orderId     String
   quantity    Int 
   createdAt   DateTime   @default(now()) @db.Timestamp(0)
-  updatedAt   DateTime?  @db.Timestamp(0) @updatedAt
   @@id([productId, orderId])
 }
 

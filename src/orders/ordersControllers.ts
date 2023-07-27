@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getOrdersAdmin, getOrderByIdAdmin, getOrders, getOrderById, getOrdersDateRange, getOrdersDateRangeAdmin, createOrder, updateOrder, deleteOrder } from "./ordersLogic";
+import { getOrdersAdmin, getOrderByIdAdmin, getOrders, getOrderById, getOrdersDateRange, getOrdersDateRangeAdmin, createOrder, updateStatusOrderAdmin, addProductsToOrder, updateProductsFromOrder, deleteProductsFromOrder, deleteOrder } from "./ordersLogic";
 
 export const getOrdersAdminController = async (req: Request, res: Response) => {
     try {
@@ -111,12 +111,47 @@ export const createOrderController = async (req: Request, res: Response) => {
     }
 }
 
-export const updateOrderController = async (req: Request, res: Response) => {
+export const updateStatusOrderController = async (req: Request, res: Response) => {
+    try {
+        const orderId = req.params.id;
+        const { status } = req.body;
+        const result = await updateStatusOrderAdmin (orderId, status);
+        res.json(result);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export const addProductsToOrderController = async (req: Request, res: Response) => {
     try {
         const orderId = req.params.id;
         const userId = res.locals.userId;
-        const { status, productsIds, quantity } = req.body;
-        const result = await updateOrder(orderId, userId, status, productsIds, quantity);
+        const { productsIds, quantity } = req.body;
+        const result = await addProductsToOrder(orderId, userId, productsIds, quantity);
+        res.json(result);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export const updateProductsFromOrderController = async (req: Request, res: Response) => {
+    try {
+        const orderId = req.params.id;
+        const userId = res.locals.userId;
+        const { productsIds, quantity } = req.body;
+        const result = await updateProductsFromOrder(orderId, userId, productsIds, quantity);
+        res.json(result);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+export const deleteProductsFromOrderController = async (req: Request, res: Response) => {
+    try {
+        const orderId = req.params.id;
+        const userId = res.locals.userId;
+        const { productsIds } = req.body;
+        const result = await deleteProductsFromOrder(orderId, userId, productsIds);
         res.json(result);
     } catch (error: any) {
         res.status(500).json({ message: error.message });

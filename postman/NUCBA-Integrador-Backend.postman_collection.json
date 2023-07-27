@@ -498,6 +498,54 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "Render Cloud- update status order - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"status\": \"\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/admin/update/:id",
+											"protocol": "https",
+											"host": [
+												"nucba-integrador-backend-ecommerce",
+												"onrender",
+												"com"
+											],
+											"path": [
+												"orders",
+												"admin",
+												"update",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -653,7 +701,7 @@
 							"response": []
 						},
 						{
-							"name": "Render Cloud - update order - Customer",
+							"name": "Render Cloud -  add products to order - Customer",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -669,7 +717,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"status\": \"\",\n    \"productsIds\": [],\n    \"quantity\": []\n}",
+									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -677,7 +725,55 @@
 									}
 								},
 								"url": {
-									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/update/:id",
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/add/products/:id",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										"add",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "local host - update products from order - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/update/products/:id",
 									"protocol": "https",
 									"host": [
 										"nucba-integrador-backend-ecommerce",
@@ -687,6 +783,55 @@
 									"path": [
 										"orders",
 										"update",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Render Cloud - delete products from order - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productsIds\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nucba-integrador-backend-ecommerce.onrender.com/orders/delete/products/:id",
+									"protocol": "https",
+									"host": [
+										"nucba-integrador-backend-ecommerce",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"orders",
+										"delete",
+										"products",
 										":id"
 									],
 									"variable": [
@@ -1268,6 +1413,52 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "local host - update status order - Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"status\": \"\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:3001/orders/admin/update/:id",
+											"host": [
+												"localhost"
+											],
+											"port": "3001",
+											"path": [
+												"orders",
+												"admin",
+												"update",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -1288,7 +1479,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
+									"raw": "{\n    \"productsIds\": [1],\n    \"quantity\": [1]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1415,7 +1606,7 @@
 							"response": []
 						},
 						{
-							"name": "local host - update order - Customer",
+							"name": "local host - add products to order - Customer",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1431,7 +1622,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"status\": \"\",\n    \"productsIds\": [],\n    \"quantity\": []\n}",
+									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1439,7 +1630,53 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3001/orders/update/:id",
+									"raw": "localhost:3001/orders/add/products/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"orders",
+										"add",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "local host - update products from order - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/orders/update/products/:id",
 									"host": [
 										"localhost"
 									],
@@ -1447,6 +1684,53 @@
 									"path": [
 										"orders",
 										"update",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "localhost - delete products from order - Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productsIds\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/orders/delete/products/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"orders",
+										"delete",
+										"products",
 										":id"
 									],
 									"variable": [

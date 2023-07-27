@@ -30,12 +30,16 @@ en Postman importar la colección de requests que se encuentra en la carpeta pos
 
 -> Crear, editar y eliminar categorías.
 
+-> Modificar el status de las órdenes generadas por los usuarios.
+
 -> Consultar las órdenes de todos los usuarios o una orden en particular.
 
 -> Consultar las órdenes de los usuarios en un período específico.
 
 ### Rol Cliente
--> Crear, editar y eliminar órdenes. 
+-> Crear y eliminar órdenes. 
+
+-> Agregar, modificar y eliminar productos de una orden.
 
 -> Consultar las órdenes realizadas o una orden en particular.
 

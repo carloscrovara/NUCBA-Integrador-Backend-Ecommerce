@@ -1,4 +1,5 @@
 import { prisma } from '../config/prismaClient';
+import { productsRouter } from '../products/productsRouter';
 
 export const getOrdersAdmin = async () => {
     try {
@@ -122,7 +123,7 @@ export const createOrder = async (userId:string, productsIds:number[], quantity:
             }
         })
 
-        const productsOnOrdersCreated = await prisma().ordersAndProducts.createMany({
+        await prisma().ordersAndProducts.createMany({
             data: productsIds.map((productId, index) => ({
                 orderId: orderCreated.id,
                 productId: productId,
@@ -130,42 +131,172 @@ export const createOrder = async (userId:string, productsIds:number[], quantity:
             })),
         })
 
-        return orderCreated;
+        const newOrder = await prisma().orders.findUnique({
+            where: { 
+                id: orderCreated.id,
+                deletedAt: null, 
+            },
+            include: { 
+                products: true 
+            },    
+        })
+
+        return newOrder;
     } catch (err){
         console.log(err)
         throw err
     }
 }
 
-export const updateOrder = async (orderId:string, userId:string, status: string, productsIds:number[], quantity:number[]) =>  {
-    try {            
-        //condicional que comprueba si el id de order a modificar pertenece al usuario logueado
-        const order = await getOrderById(orderId, userId);
-        if (!order) {
-            throw new Error("Not found the order or ID order belongs to another user.");
-        } 
+export const updateStatusOrderAdmin = async (orderId:string, status: string) =>  {
+    try {                    
         const orderUpdated = await prisma().orders.update({
             where: {
                 id: orderId,
             },
             data: {
                 status: status,
-                userId: userId,
             }
         })
 
-        const productsOnOrdersCreated = await prisma().ordersAndProducts.createMany({
+        const orderResult = await prisma().orders.findUnique({
+            where: { 
+                id: orderUpdated.id,
+                deletedAt: null, 
+            },
+            include: { 
+                products: true 
+            },    
+        })
+
+        return orderResult;
+    } catch (err){
+        console.log(err)
+        throw err
+    }
+}
+
+export const addProductsToOrder = async (orderId:string, userId:string, productsIds:number[], quantity:number[]) =>  {
+    try {            
+        //condicional que comprueba si el id de order a modificar pertenece al usuario logueado
+        const order = await getOrderById(orderId, userId);
+        if (!order) {
+            throw new Error("Not found the order or ID order belongs to another user.");
+        } 
+
+        await prisma().orders.update({
+            where: {
+                id: orderId,
+            },
+            data: {
+                updatedAt: new Date(),
+            }
+        })
+
+        await prisma().ordersAndProducts.createMany({
             data: productsIds.map((productId, index) => ({
-                orderId: orderUpdated.id,
+                orderId: orderId,
                 productId: productId,
                 quantity: quantity[index],
             })),
         })
+
+        const orderResult = await prisma().orders.findUnique({
+            where: { 
+                id: orderId,
+                deletedAt: null, 
+            },
+            include: { 
+                products: true 
+            },    
+        })
         
-        return orderUpdated;
+        return orderResult;
     } catch (err){
         console.log(err)
         throw err
+    }
+}
+
+export const updateProductsFromOrder = async (orderId:string, userId:string, productsIds:number[], quantity:number[]) => {
+    try {            
+        //condicional que comprueba si el id de order a modificar pertenece al usuario logueado
+        const order = await getOrderById(orderId, userId);
+        if (!order) {
+            throw new Error("Not found the order or ID order belongs to another user.");
+        } 
+
+        await prisma().orders.update({
+            where: {
+                id: orderId,
+            },
+            data: {
+                updatedAt: new Date(),
+            }
+        })
+
+        await prisma().ordersAndProducts.deleteMany({
+            where: {
+                orderId: orderId,
+                productId: {
+                    in: productsIds,
+                },
+            }
+        })
+        
+        await prisma().ordersAndProducts.createMany({
+            data: productsIds.map((productId, index) => ({
+                orderId: orderId,
+                productId: productId,
+                quantity: quantity[index],
+            })),
+        })
+
+        const orderResult = await prisma().orders.findUnique({
+            where: { 
+                id: orderId,
+                deletedAt: null, 
+            },
+            include: { 
+                products: true 
+            },    
+        })
+
+        return orderResult;
+    } catch (err){
+        console.log(err);
+        throw err;
+    }
+}
+
+export const deleteProductsFromOrder = async (orderId:string, userId:string, productsIds:number[]) =>  {
+    try {
+        //condicional que comprueba si el id de order a modificar pertenece al usuario logueado
+        const order = await getOrderById(orderId, userId);
+        if (!order) {
+            throw new Error("Not found the order or ID order belongs to another user.");
+        }
+        await prisma().orders.update({
+            where: {
+                id: orderId,
+            },
+            data: {
+                updatedAt: new Date(),
+            }
+        })
+
+        await prisma().ordersAndProducts.deleteMany({
+            where: {
+                orderId: orderId,
+                productId: {
+                    in: productsIds,
+                },
+            }
+        })
+        return;
+    } catch (err){
+        console.log(err);
+        throw err;
     }
 }
 
@@ -177,6 +308,12 @@ export const deleteOrder = async (orderId:string, userId: string) => {
             throw new Error("Not found the order or ID order belongs to another user.");
         }     
         await prisma().orders.delete({ where: { id: orderId } });
+
+        await prisma().ordersAndProducts.deleteMany({
+            where: {
+                orderId: orderId,
+            }
+        });
         return;
     } catch (err){
         console.log(err);

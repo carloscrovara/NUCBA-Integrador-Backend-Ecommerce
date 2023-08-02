@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8e08683a-88ef-4197-92f4-08c616dacf57",
+		"_postman_id": "1b71722a-f1b4-4c78-9017-91606c7b62b9",
 		"name": "NUCBA-Integrador-Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1479,7 +1479,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productsIds\": [1],\n    \"quantity\": [1]\n}",
+									"raw": "{\n    \"productsIds\": [],\n    \"quantity\": []\n}",
 									"options": {
 										"raw": {
 											"language": "json"

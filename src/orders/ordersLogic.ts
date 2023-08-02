@@ -1,5 +1,4 @@
 import { prisma } from '../config/prismaClient';
-import { productsRouter } from '../products/productsRouter';
 
 export const getOrdersAdmin = async () => {
     try {
